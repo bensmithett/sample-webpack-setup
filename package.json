@@ -1,0 +1,22 @@
+{
+  "name": "sample-webpack-setup",
+  "version": "1.0.0",
+  "description": "A quick sample webpack setup. Not at all useful for public consumption.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bensmithett/sample-webpack-setup.git"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack"
+  },
+  "dependencies": {
+    "6to5-core": "^3.5.3",
+    "6to5-loader": "^3.0.0",
+    "css-loader": "^0.9.1",
+    "extract-text-webpack-plugin": "^0.3.8",
+    "sass-loader": "^0.4.0-beta.1",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.5.3"
+  }
+}

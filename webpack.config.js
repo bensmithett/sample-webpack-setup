@@ -2,30 +2,44 @@ var path = require("path");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+/* Entry & output files
+*****************************/
+var entry = {
+  index: ["./src/index"],
+};
+
+var output = {
+  filename: "[name]-[hash].js",
+  path: path.join(__dirname, "./build"),
+  publicPath: "/_assets/",
+};
+
+
+/* Loaders
+*****************************/
+var loaders = [
+  {
+    test: /\.sass$/,
+    loader: ExtractTextPlugin.extract("style-loader", "css!sass?indentedSyntax=sass")
+  },
+  {
+    test: /\.jpg$/,
+    loader: "file-loader"
+  }
+];
+
+
+
+/* Exports
+*****************************/
 module.exports = {
-  cache: true,
-  context: __dirname,
-  entry: {
-    index: ["./src/index"],
-  },
+  entry: entry,
+  output: output,
   module: {
-    loaders: [
-      {
-        test: /\.sass$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css!sass?indentedSyntax=sass")
-      },
-      {
-        test: /\.jpg$/,
-        loader: "file-loader"
-      }
-    ]
+    loaders: loaders,
   },
-  output: {
-    filename: "[name].js",
-    path: path.join(__dirname, "./build"),
-    publicPath: "/build/"
-  },
+  
   plugins: [
-    new ExtractTextPlugin("style.css", { allChunks: true })
+    new ExtractTextPlugin("style-[hash].css")
   ]
 };
